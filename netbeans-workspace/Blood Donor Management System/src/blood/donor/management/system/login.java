@@ -90,6 +90,7 @@ public class login extends javax.swing.JFrame {
             new home().setVisible(true);
         } else{
             JOptionPane.showMessageDialog(null, "Incorrect Username or Password. Try again!");
+            int a= 0;
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
