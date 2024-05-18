@@ -49,12 +49,9 @@ public class updateDetailsDonor extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
         jTextField8 = new javax.swing.JTextField();
         jTextField9 = new javax.swing.JTextField();
         jTextField10 = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         jSeparator3 = new javax.swing.JSeparator();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -90,78 +87,72 @@ public class updateDetailsDonor extends javax.swing.JFrame {
         getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 114, 649, -1));
 
         jLabel3.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        jLabel3.setText("Full Name:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 138, 103, -1));
+        jLabel3.setText("First Name:");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 103, -1));
 
         jLabel4.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        jLabel4.setText("Father Name:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 180, 103, -1));
+        jLabel4.setText("Mid Name:");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 103, -1));
 
         jLabel5.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        jLabel5.setText("Mother Name:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 222, 103, -1));
+        jLabel5.setText("Last Name:");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 239, 103, 30));
 
         jLabel6.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         jLabel6.setText("Date of Birth:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 264, 103, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 299, 103, 30));
 
         jLabel7.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         jLabel7.setText("Phone Number:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 306, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 359, -1, 30));
 
         jLabel8.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         jLabel8.setText("Gender:");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 348, 103, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 290, 103, 40));
 
         jTextField2.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(174, 135, 150, -1));
+        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 150, -1));
 
         jTextField3.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(174, 177, 150, -1));
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, 150, -1));
 
         jTextField4.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(174, 219, 150, -1));
+        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, 150, -1));
 
         jTextField5.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(174, 261, 150, -1));
+        getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 300, 150, -1));
 
         jTextField6.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(174, 303, 150, -1));
+        getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 360, 150, -1));
 
         jTextField7.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        getContentPane().add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(174, 345, 150, -1));
+        getContentPane().add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 300, 150, -1));
 
         jLabel9.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        jLabel9.setText("Email:");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(389, 138, 91, -1));
+        jLabel9.setText("Weight:");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 139, 91, 30));
 
         jLabel10.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         jLabel10.setText("Blood Group:");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(389, 180, -1, -1));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 190, -1, 30));
 
         jLabel11.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        jLabel11.setText("City:");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(389, 222, 91, -1));
-
-        jLabel12.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        jLabel12.setText("Address:");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(389, 264, 91, -1));
+        jLabel11.setText("Age:");
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 240, 91, 30));
 
         jTextField8.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        getContentPane().add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 135, 149, -1));
+        getContentPane().add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 140, 149, -1));
 
         jTextField9.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        getContentPane().add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 177, 149, -1));
+        getContentPane().add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 190, 149, -1));
 
         jTextField10.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        getContentPane().add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 219, 149, -1));
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
-
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(389, 303, 270, -1));
+        getContentPane().add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 240, 149, -1));
         getContentPane().add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 414, 649, 10));
 
         jButton2.setFont(new java.awt.Font("K2D", 1, 14)); // NOI18N
@@ -195,7 +186,6 @@ public class updateDetailsDonor extends javax.swing.JFrame {
         getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(527, 442, -1, -1));
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/all page background image.png"))); // NOI18N
-        jLabel13.setText("jLabel13");
         getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
@@ -217,47 +207,69 @@ public class updateDetailsDonor extends javax.swing.JFrame {
         String donorID = jTextField1.getText();
         try {
             Connection con = ConnectionProvider.getCon();
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("select * from donor where donorID = '"+donorID+"'");
+            String query = "SELECT b.bID, b.bFName, b.bMName, b.bLName, b.BDay, b.bPhone, b.BloodType, c.Weight, c.Age, c.Gender " +
+                       "FROM Blood_Donor b " +
+                       "JOIN `Condition` c ON b.cID = c.cID " +
+                       "WHERE b.bID = ?";
+            PreparedStatement pst = con.prepareStatement(query);
+            pst.setString(1, donorID);
+            ResultSet rs = pst.executeQuery();
             if(rs.next()){
-                jTextField2.setText(rs.getString(2));
-                jTextField3.setText(rs.getString(3));
-                jTextField4.setText(rs.getString(4));
-                jTextField5.setText(rs.getString(5));
-                jTextField6.setText(rs.getString(6));
-                jTextField7.setText(rs.getString(7));
-                jTextField8.setText(rs.getString(8));
-                jTextField9.setText(rs.getString(9));
-                jTextField10.setText(rs.getString(10));  
-                jTextArea1.setText(rs.getString(11));
+                jTextField2.setText(rs.getString("bFName"));
+                jTextField3.setText(rs.getString("bMName"));
+                jTextField4.setText(rs.getString("bLName"));
+                jTextField5.setText(rs.getString("BDay"));
+                jTextField6.setText(rs.getString("bPhone"));
+                jTextField7.setText(rs.getString("Gender"));
+                jTextField8.setText(rs.getString("Weight"));
+                jTextField9.setText(rs.getString("BloodType"));
+                jTextField10.setText(rs.getString("Age"));  
                 jTextField1.setEditable(false);
-            } else{
-                JOptionPane.showMessageDialog(null, "Donor ID does not existed.");
+            } else {
+                JOptionPane.showMessageDialog(null, "Donor ID does not exist.");
             }
         } catch (Exception e) {
-            
-        }
+            JOptionPane.showMessageDialog(null, e);
+        }   
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         String donorID = jTextField1.getText();
-        String name = jTextField2.getText();
-        String fatherName = jTextField3.getText();
-        String motherName = jTextField4.getText();
-        String DOB = jTextField5.getText();
-        String mobileNo = jTextField6.getText();
-        String gender = jTextField7.getText();
-        String email = jTextField8.getText();
-        String bloodGroup = jTextField9.getText();
-        String city = jTextField10.getText();
-        String address = jTextArea1.getText();
-        
+        String bFName = jTextField2.getText();
+        String bMName = jTextField3.getText();
+        String bLName = jTextField4.getText();
+        String BDay = jTextField5.getText();
+        String bPhone = jTextField6.getText();
+        String Gender = jTextField7.getText();
+        String Weight = jTextField8.getText();
+        String BloodType = jTextField9.getText();
+        String Age = jTextField10.getText();
+
         try {
             Connection con = ConnectionProvider.getCon();
-            Statement st = con.createStatement();
-            st.executeUpdate("update donor set name='"+name+"',fatherName='"+fatherName+"',motherName='"+motherName+"',DOB='"+DOB+"',mobileNo='"+mobileNo+"',gender='"+gender+"',email='"+email
-                    +"',bloodGroup='"+bloodGroup+"',city='"+city+"',address='"+address+"' where donorID='"+donorID+"'");
+            String updateDonorQuery = "UPDATE Blood_Donor SET bFName = ?, bMName = ?, bLName = ?, BDay = ?, bPhone = ?, BloodType = ? WHERE bID = ?";
+            String updateConditionQuery = "UPDATE `Condition` SET Weight = ?, Age = ?, Gender = ? WHERE cID = (SELECT cID FROM Blood_Donor WHERE bID = ?)";
+
+            // Update Blood_Donor table
+            PreparedStatement pstDonor = con.prepareStatement(updateDonorQuery);
+            pstDonor.setString(1, bFName);
+            pstDonor.setString(2, bMName);
+            pstDonor.setString(3, bLName);
+            pstDonor.setString(4, BDay);
+            pstDonor.setString(5, bPhone);
+            pstDonor.setString(6, BloodType);
+            pstDonor.setString(7, donorID);
+            pstDonor.executeUpdate();
+
+            // Update Condition table
+            PreparedStatement pstCondition = con.prepareStatement(updateConditionQuery);
+            pstCondition.setString(1, Weight);
+            pstCondition.setString(2, Age);
+            pstCondition.setString(3, Gender);
+            pstCondition.setString(4, donorID);
+            pstCondition.executeUpdate();
+
             JOptionPane.showMessageDialog(null, "Successfully Updated");
             setVisible(false);
             new updateDetailsDonor().setVisible(true);
@@ -265,6 +277,10 @@ public class updateDetailsDonor extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Connection Error. Try again.");
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -309,7 +325,6 @@ public class updateDetailsDonor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -319,11 +334,9 @@ public class updateDetailsDonor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField2;
