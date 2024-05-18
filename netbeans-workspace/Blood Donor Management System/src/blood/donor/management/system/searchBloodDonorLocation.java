@@ -129,8 +129,18 @@ public class searchBloodDonorLocation extends javax.swing.JFrame {
         try {
             Connection con = ConnectionProvider.getCon();
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("select * from donor where city like '"+location+"' or address like'%"+location+"%'");
-            jTable1.setAutoResizeMode(jTable1.AUTO_RESIZE_OFF);
+            String query = "SELECT b.bID, b.bFName, b.bMName, b.bLName, b.BDay, b.bPhone, b.BloodType, " +
+                            "c.Weight, c.Age, c.Gender, hc.Bpm, hc.Health_record, " +
+                            "a.ComponentType, a.BVolume, al.aLocation, d.dFName, d.dLName, d.Specialty " +
+                            "FROM Blood_Donor b " +
+                            "JOIN `Condition` c ON b.cID = c.cID " +
+                            "JOIN Health_Condition hc ON c.hID = hc.hID " +
+                            "LEFT JOIN Appointment a ON b.bID = a.bID " +
+                            "LEFT JOIN Doctor d ON a.dID = d.dID " +
+                            "LEFT JOIN Appoint_location al ON a.locID = al.locID " +
+                            "WHERE al.aLocation LIKE '%" + location + "%'";
+            ResultSet rs = st.executeQuery(query);
+            jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
             jTable1.setModel(DbUtils.resultSetToTableModel(rs));
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);

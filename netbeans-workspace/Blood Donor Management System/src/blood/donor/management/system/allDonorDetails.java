@@ -91,7 +91,6 @@ public class allDonorDetails extends javax.swing.JFrame {
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 460, -1, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/all page background image.png"))); // NOI18N
-        jLabel3.setText("jLabel3");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
@@ -102,8 +101,17 @@ public class allDonorDetails extends javax.swing.JFrame {
         try {
             Connection con = ConnectionProvider.getCon();
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("select * from donor");
-            jTable1.setAutoResizeMode(jTable1.AUTO_RESIZE_OFF);
+            String query = "SELECT b.bID, b.bFName, b.bMName, b.bLName, b.BDay, b.bPhone, b.BloodType, " +
+                        "c.Weight, c.Age, c.Gender, hc.Bpm, hc.Health_record, " +
+                        "a.ComponentType, a.BVolume, al.aLocation, d.dFName, d.dLName, d.Specialty " +
+                        "FROM Blood_Donor b " +
+                        "JOIN `Condition` c ON b.cID = c.cID " +
+                        "JOIN Health_Condition hc ON c.hID = hc.hID " +
+                        "LEFT JOIN Appointment a ON b.bID = a.bID " +
+                        "LEFT JOIN Doctor d ON a.dID = d.dID " +
+                        "LEFT JOIN Appoint_location al ON a.locID = al.locID";
+            ResultSet rs = st.executeQuery(query);
+            jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
             jTable1.setModel(DbUtils.resultSetToTableModel(rs));
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
