@@ -208,21 +208,21 @@ public class addNewDonor extends javax.swing.JFrame {
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         // TODO add your handling code here:
-        try {
-            Connection con = ConnectionProvider.getCon();
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("select max(cID) from Blood_Donor");
-            if(rs.next()){
-                int id = rs.getInt(1);
-                id+=1;
-                String str = String.valueOf(id);
-                jLabel3.setText(str);
-            } else{
-                jLabel3.setText("1");
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+        try (Connection con = ConnectionProvider.getCon();
+         Statement st = con.createStatement()) {
+
+        ResultSet rs = st.executeQuery("SELECT MAX(cID) FROM Blood_Donor");
+        if (rs.next()) {
+            int id = rs.getInt(1) + 1;
+            jLabel3.setText(String.valueOf(id));
+        } else {
+            jLabel3.setText("1");
         }
+    } catch (SQLException e) {
+        // Log the exception for debugging
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(null, "An error occurred while fetching data. Please try again later.");
+    }
     }//GEN-LAST:event_formComponentShown
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -238,17 +238,33 @@ public class addNewDonor extends javax.swing.JFrame {
         String bloodGroup = (String)jComboBox2.getSelectedItem();
         String age = jTextField6.getText();
         
-        try {
-            Connection con = ConnectionProvider.getCon();
-            Statement st = con.createStatement();
-            st.executeUpdate("insert into Blood_Donor (bFName, bMName, bLName, BDay, bPhone, BloodType, cID) values('"+FirstName+"','"+MidName+"','"+LastName+"','"+DOB+"','"+mobileNo+"','"+bloodGroup+"','"+donorID+"')");
-            st.executeUpdate("insert into `Condition` (Weight, Age, Gender, hID) values('"+weight+"','"+age+"','"+gender+"','"+donorID+"')");
-            JOptionPane.showMessageDialog(null, "Seccessfully Updated");
-            setVisible(false);
-            new addNewDonor().setVisible(true);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
+        try (Connection con = ConnectionProvider.getCon();
+            PreparedStatement pst1 = con.prepareStatement("INSERT INTO Blood_Donor (bFName, bMName, bLName, BDay, bPhone, BloodType, cID) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            PreparedStatement pst2 = con.prepareStatement("INSERT INTO `Condition` (Weight, Age, Gender, hID) VALUES (?, ?, ?, ?)")) {
+
+           pst1.setString(1, FirstName);
+           pst1.setString(2, MidName);
+           pst1.setString(3, LastName);
+           pst1.setString(4, DOB);
+           pst1.setString(5, mobileNo);
+           pst1.setString(6, bloodGroup);
+           pst1.setString(7, donorID);
+           pst1.executeUpdate();
+
+           pst2.setString(1, weight);
+           pst2.setString(2, age);
+           pst2.setString(3, gender);
+           pst2.setString(4, donorID);
+           pst2.executeUpdate();
+
+           JOptionPane.showMessageDialog(null, "Successfully Updated");
+           setVisible(false);
+           new addNewDonor().setVisible(true);
+       } catch (SQLException e) {
+           // Log the exception for debugging
+           e.printStackTrace();
+           JOptionPane.showMessageDialog(null, "An error occurred. Please try again later.");
+       }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
