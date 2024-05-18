@@ -42,19 +42,17 @@ public class login extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         jLabel1.setText("Username:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 330, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 570, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         jLabel2.setText("Password:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 380, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 620, -1, -1));
 
-        jTextField1.setBackground(new java.awt.Color(255, 204, 204));
         jTextField1.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 330, 279, -1));
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 570, 279, -1));
 
-        jPasswordField1.setBackground(new java.awt.Color(255, 204, 204));
         jPasswordField1.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        getContentPane().add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 380, 279, -1));
+        getContentPane().add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 620, 279, -1));
 
         jButton1.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/login.png"))); // NOI18N
@@ -64,7 +62,7 @@ public class login extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 430, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 670, -1, -1));
 
         jButton2.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Exit application.png"))); // NOI18N
@@ -74,11 +72,11 @@ public class login extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 430, -1, -1));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 670, -1, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/login background final.PNG"))); // NOI18N
         jLabel3.setText("jLabel3");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -30, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
