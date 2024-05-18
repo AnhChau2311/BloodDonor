@@ -4,10 +4,8 @@
  */
 package blood.donor.management.system;
 import java.sql.*;
-import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import project.ConnectionProvider;
-import com.toedter.calendar.JDateChooser;
 
 /**
  *
@@ -48,19 +46,16 @@ public class addNewDonor extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jTextField5 = new javax.swing.JTextField();
         jComboBox2 = new javax.swing.JComboBox<>();
         jTextField6 = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         jSeparator2 = new javax.swing.JSeparator();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jLabel14 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        jTextField8 = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(340, 130));
@@ -91,76 +86,65 @@ public class addNewDonor extends javax.swing.JFrame {
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, 30, 20));
 
         jLabel4.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        jLabel4.setText("Full Name:");
+        jLabel4.setText("First Name:");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(48, 152, 103, -1));
 
         jLabel5.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        jLabel5.setText("Father Name:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(48, 194, 103, -1));
+        jLabel5.setText("Mid Name:");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 103, -1));
 
         jLabel6.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        jLabel6.setText("Mother Name:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(48, 236, 103, -1));
+        jLabel6.setText("Last Name:");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 103, 30));
 
         jLabel7.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         jLabel7.setText("Date of Birth:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(48, 273, 103, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 103, -1));
 
         jLabel8.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         jLabel8.setText("Phone Number:");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(48, 305, -1, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         jLabel9.setText("Gender:");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(48, 346, 103, -1));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 310, 103, -1));
 
         jTextField1.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(169, 149, 180, -1));
 
         jTextField2.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(169, 191, 180, -1));
+        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 200, 180, -1));
 
         jTextField3.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(169, 233, 180, -1));
+        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 250, 180, -1));
 
         jTextField4.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(169, 302, 180, -1));
+        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 360, 180, -1));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female", "Others", " " }));
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(169, 344, 180, -1));
+        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 302, 150, 30));
 
         jLabel10.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        jLabel10.setText("Email:");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 150, 78, -1));
+        jLabel10.setText("Weight:");
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 150, 78, -1));
 
         jLabel11.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         jLabel11.setText("Blood Group:");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 190, -1, -1));
-
-        jLabel12.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        jLabel12.setText("Address:");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 270, 91, -1));
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 199, -1, 30));
 
         jLabel13.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        jLabel13.setText("City:");
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 240, 91, -1));
+        jLabel13.setText("Age:");
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 250, 91, 30));
 
         jTextField5.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 150, 154, -1));
+        getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 150, 150, -1));
 
         jComboBox2.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-" }));
-        getContentPane().add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 190, 154, -1));
+        getContentPane().add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 200, 150, -1));
 
         jTextField6.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 240, 154, -1));
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
-
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 300, 263, -1));
+        getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 250, 150, -1));
         getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(48, 416, 620, -1));
 
         jButton1.setFont(new java.awt.Font("K2D", 1, 14)); // NOI18N
@@ -193,17 +177,16 @@ public class addNewDonor extends javax.swing.JFrame {
         });
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(513, 444, -1, -1));
 
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/all page background image.png"))); // NOI18N
-        jLabel14.setText("jLabel14");
-        jLabel14.addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentShown(java.awt.event.ComponentEvent evt) {
-                jLabel14ComponentShown(evt);
+        jTextField8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField8ActionPerformed(evt);
             }
         });
-        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 500));
+        getContentPane().add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 302, 180, 30));
 
-        jTextField7.setText("jTextField7");
-        getContentPane().add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, -1, -1));
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/all page background image.png"))); // NOI18N
+        jLabel15.setText("jLabel15");
+        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(-200, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -223,16 +206,12 @@ public class addNewDonor extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel2ComponentShown
 
-    private void jLabel14ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jLabel14ComponentShown
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel14ComponentShown
-
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         // TODO add your handling code here:
         try {
             Connection con = ConnectionProvider.getCon();
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("select max(donorID) from donor");
+            ResultSet rs = st.executeQuery("select max(cID) from Blood_Donor");
             if(rs.next()){
                 int id = rs.getInt(1);
                 id+=1;
@@ -249,23 +228,21 @@ public class addNewDonor extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String donorID = jLabel3.getText();
-        String name = jTextField1.getText();
-        String fatherName = jTextField2.getText();
-        String motherName = jTextField3.getText();
-        SimpleDateFormat dFormat = new SimpleDateFormat("dd-MM-yyyy");
-        JDateChooser jDateChooser1 = new JDateChooser();
-        String DOB = dFormat.format(jDateChooser1.getDate());
+        String FirstName = jTextField1.getText();
+        String MidName = jTextField2.getText();
+        String LastName = jTextField3.getText();
+        String DOB = jTextField8.getText();
         String mobileNo = jTextField4.getText();
         String gender = (String)jComboBox1.getSelectedItem();
-        String email = jTextField5.getText();
+        String weight = jTextField5.getText();
         String bloodGroup = (String)jComboBox2.getSelectedItem();
-        String city = jTextField6.getText();
-        String address = jTextArea1.getText();
+        String age = jTextField6.getText();
         
         try {
             Connection con = ConnectionProvider.getCon();
             Statement st = con.createStatement();
-            st.executeUpdate("insert into donor values('"+donorID+"','"+name+"','"+fatherName+"','"+motherName+"','"+DOB+"','"+mobileNo+"','"+gender+"','"+email+"','"+bloodGroup+"','"+city+"','"+address+"')");
+            st.executeUpdate("insert into Blood_Donor values('"+donorID+"','"+FirstName+"','"+MidName+"','"+LastName+"','"+DOB+"','"+mobileNo+"','"+bloodGroup+"')");
+            st.executeUpdate("insert into `Condition` values('"+gender+"','"+weight+"','"+age+"')");
             JOptionPane.showMessageDialog(null, "Seccessfully Updated");
             setVisible(false);
             new addNewDonor().setVisible(true);
@@ -273,6 +250,10 @@ public class addNewDonor extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField8ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -318,9 +299,8 @@ public class addNewDonor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -329,16 +309,14 @@ public class addNewDonor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField jTextField8;
     // End of variables declaration//GEN-END:variables
 }
