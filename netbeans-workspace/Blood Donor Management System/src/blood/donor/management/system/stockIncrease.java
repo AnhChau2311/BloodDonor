@@ -121,7 +121,6 @@ public class stockIncrease extends javax.swing.JFrame {
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(528, 457, -1, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/all page background image.png"))); // NOI18N
-        jLabel4.setText("jLabel4");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
@@ -130,28 +129,41 @@ public class stockIncrease extends javax.swing.JFrame {
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         // TODO add your handling code here:
         try {
+            // Establish connection to the database
             Connection con = ConnectionProvider.getCon();
+            // Create a statement
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("select * from stock");
-            jTable1.setModel(DbUtils.resultSetToTableModel(rs));            
+            // Execute the SQL query to retrieve stock information
+            ResultSet rs = st.executeQuery("SELECT bloodType, units FROM Stock");
+            // Set the retrieved data to the jTable1
+            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
         } catch (Exception e) {
+            // Show an error message if any exception occurs
             JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_formComponentShown
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String bloodGroup = (String)jComboBox1.getSelectedItem();
+        String bloodGroup = (String) jComboBox1.getSelectedItem();
         String unit = jTextField1.getText();
         int unit1 = Integer.parseInt(unit);
+
         try {
+            // Establish connection to the database
             Connection con = ConnectionProvider.getCon();
+            // Create a statement
             Statement st = con.createStatement();
-            st.executeUpdate("update stock set units=units+'"+unit1+"'where bloodGroup='"+bloodGroup+"'");
-            JOptionPane.showMessageDialog(null, "Successfully Updated");
+            // Update the stock table
+            st.executeUpdate("UPDATE Stock SET units = units + " + unit1 + " WHERE bloodType = '" + bloodGroup + "'");
+            // Show a success message
+            JOptionPane.showMessageDialog(null, "Stock updated successfully");
+            // Close the current window
             setVisible(false);
+            // Open the stockIncrease window again to reflect the changes
             new stockIncrease().setVisible(true);
         } catch (Exception e) {
+            // Show an error message if any exception occurs
             JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
