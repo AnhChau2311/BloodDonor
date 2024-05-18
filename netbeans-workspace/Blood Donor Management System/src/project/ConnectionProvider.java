@@ -12,10 +12,10 @@ public class ConnectionProvider {
     
     public static Connection getCon() {
         try {
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             // Correct JDBC URL
-            String url = "jdbc:sqlserver://localhost:1434;databaseName=BloodDonation";
-            String user = "sa";
+            String url = "jdbc:mysql://localhost:3306/BloodDonation?useSSL=false&serverTimezone=UTC";
+            String user = "root";
             String password = "123456";
             Connection con = DriverManager.getConnection(url, user, password);
             return con;
