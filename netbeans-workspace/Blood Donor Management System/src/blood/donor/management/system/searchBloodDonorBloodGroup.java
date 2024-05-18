@@ -131,12 +131,21 @@ public class searchBloodDonorBloodGroup extends javax.swing.JFrame {
         try {
             Connection con = ConnectionProvider.getCon();
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("select * from donor where bloodGroup like '%"+bloodGroup+"%'");
-            jTable1.setAutoResizeMode(jTable1.AUTO_RESIZE_OFF);
+            ResultSet rs = st.executeQuery(
+                        "SELECT b.bID, b.bFName, b.bMName, b.bLName, b.BDay, b.bPhone, b.BloodType, " +
+                        "c.Weight, c.Age, c.Gender, a.ComponentType, al.aLocation, d.dFName, d.dLName " +
+                        "FROM Blood_Donor b " +
+                        "JOIN `Condition` c ON b.cID = c.cID " +
+                        "JOIN Appointment a ON b.bID = a.bID " +
+                        "JOIN Appoint_location al ON a.locID = al.locID " +
+                        "JOIN Doctor d ON a.dID = d.dID " +
+                        "WHERE b.BloodType LIKE '%" + bloodGroup + "%'"
+            );
+            jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
             jTable1.setModel(DbUtils.resultSetToTableModel(rs));
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
-        }
+    }
     }//GEN-LAST:event_jTextField1KeyReleased
 
     /**
