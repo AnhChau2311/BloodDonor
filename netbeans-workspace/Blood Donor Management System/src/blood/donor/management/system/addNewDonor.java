@@ -7,6 +7,8 @@ import java.sql.*;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import project.ConnectionProvider;
+import com.toedter.calendar.JDateChooser;
+
 /**
  *
  * @author tuananhchaukhac
@@ -42,7 +44,6 @@ public class addNewDonor extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jTextField4 = new javax.swing.JTextField();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
@@ -121,7 +122,6 @@ public class addNewDonor extends javax.swing.JFrame {
 
         jTextField3.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(169, 233, 180, -1));
-        getContentPane().add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(169, 273, 180, -1));
 
         jTextField4.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(169, 302, 180, -1));
@@ -253,6 +253,7 @@ public class addNewDonor extends javax.swing.JFrame {
         String fatherName = jTextField2.getText();
         String motherName = jTextField3.getText();
         SimpleDateFormat dFormat = new SimpleDateFormat("dd-MM-yyyy");
+        JDateChooser jDateChooser1 = new JDateChooser();
         String DOB = dFormat.format(jDateChooser1.getDate());
         String mobileNo = jTextField4.getText();
         String gender = (String)jComboBox1.getSelectedItem();
@@ -299,7 +300,7 @@ public class addNewDonor extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(addNewDonor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -314,7 +315,6 @@ public class addNewDonor extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package blood.donor.management.system;
-import com.mysql.cj.jdbc.result.ResultSetFactory;
+//import com.mysql.cj.jdbc.result.ResultSetFactory;
 import java.sql.*;
 import javax.swing.JOptionPane;
 import project.ConnectionProvider;
