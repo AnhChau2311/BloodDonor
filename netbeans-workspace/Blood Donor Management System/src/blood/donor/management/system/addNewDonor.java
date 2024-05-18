@@ -55,7 +55,7 @@ public class addNewDonor extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jTextField8 = new javax.swing.JTextField();
-        jLabel15 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(340, 130));
@@ -177,6 +177,7 @@ public class addNewDonor extends javax.swing.JFrame {
         });
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(513, 444, -1, -1));
 
+        jTextField8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jTextField8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField8ActionPerformed(evt);
@@ -184,9 +185,8 @@ public class addNewDonor extends javax.swing.JFrame {
         });
         getContentPane().add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 302, 180, 30));
 
-        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/all page background image.png"))); // NOI18N
-        jLabel15.setText("jLabel15");
-        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(-200, 0, -1, -1));
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/all page background image.png"))); // NOI18N
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -241,8 +241,8 @@ public class addNewDonor extends javax.swing.JFrame {
         try {
             Connection con = ConnectionProvider.getCon();
             Statement st = con.createStatement();
-            st.executeUpdate("insert into Blood_Donor values('"+donorID+"','"+FirstName+"','"+MidName+"','"+LastName+"','"+DOB+"','"+mobileNo+"','"+bloodGroup+"')");
-            st.executeUpdate("insert into `Condition` values('"+gender+"','"+weight+"','"+age+"')");
+            st.executeUpdate("insert into Blood_Donor (bFName, bMName, bLName, BDay, bPhone, BloodType, cID) values('"+FirstName+"','"+MidName+"','"+LastName+"','"+DOB+"','"+mobileNo+"','"+bloodGroup+"','"+donorID+"')");
+            st.executeUpdate("insert into `Condition` (Weight, Age, Gender, hID) values('"+weight+"','"+age+"','"+gender+"','"+donorID+"')");
             JOptionPane.showMessageDialog(null, "Seccessfully Updated");
             setVisible(false);
             new addNewDonor().setVisible(true);
@@ -299,8 +299,8 @@ public class addNewDonor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
