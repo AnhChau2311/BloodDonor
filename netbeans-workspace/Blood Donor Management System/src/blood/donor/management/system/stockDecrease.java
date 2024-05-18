@@ -135,7 +135,7 @@ public class stockDecrease extends javax.swing.JFrame {
         try {
             Connection con = ConnectionProvider.getCon();
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("select * from stock");
+            ResultSet rs = st.executeQuery("SELECT * FROM Stock");
             jTable1.setModel(DbUtils.resultSetToTableModel(rs));
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
@@ -153,13 +153,13 @@ public class stockDecrease extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String bloodGroup = (String)jComboBox1.getSelectedItem();
+        String bloodGroup = (String) jComboBox1.getSelectedItem();
         String unit = jTextField1.getText();
         int unit1 = Integer.parseInt(unit);
         try {
             Connection con = ConnectionProvider.getCon();
             Statement st = con.createStatement();
-            st.executeUpdate("update stock set units=units-'"+unit1+"'where bloodGroup='"+bloodGroup+"'");
+            st.executeUpdate("UPDATE Stock SET units = units - '" + unit1 + "' WHERE bloodType = '" + bloodGroup + "'");
             JOptionPane.showMessageDialog(null, "Successfully Updated");
             setVisible(false);
             new stockDecrease().setVisible(true);
