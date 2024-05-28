@@ -19,6 +19,7 @@ public class addNewDonor extends javax.swing.JFrame {
     public addNewDonor() {
         initComponents();
     }
+    private int nextDonorID;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -208,63 +209,80 @@ public class addNewDonor extends javax.swing.JFrame {
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         // TODO add your handling code here:
-        try (Connection con = ConnectionProvider.getCon();
-         Statement st = con.createStatement()) {
-
-        ResultSet rs = st.executeQuery("SELECT MAX(cID) FROM Blood_Donor");
-        if (rs.next()) {
-            int id = rs.getInt(1) + 1;
-            jLabel3.setText(String.valueOf(id));
-        } else {
-            jLabel3.setText("1");
+        try (Connection con = ConnectionProvider.getCon(); Statement st = con.createStatement()) {
+            ResultSet rs = st.executeQuery("SELECT MAX(bID) FROM Blood_Donor");
+            if (rs.next()) {
+                int maxDonorID = rs.getInt(1);
+                nextDonorID = maxDonorID + 1;
+                jLabel3.setText(String.valueOf(nextDonorID));
+            } else {
+                nextDonorID = 1; // Default to 1 if no records are found
+                jLabel3.setText(String.valueOf(nextDonorID));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error fetching the next donor ID.");
         }
-    } catch (SQLException e) {
-        // Log the exception for debugging
-        e.printStackTrace();
-        JOptionPane.showMessageDialog(null, "An error occurred while fetching data. Please try again later.");
-    }
     }//GEN-LAST:event_formComponentShown
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String donorID = jLabel3.getText();
         String FirstName = jTextField1.getText();
         String MidName = jTextField2.getText();
         String LastName = jTextField3.getText();
         String DOB = jTextField8.getText();
         String mobileNo = jTextField4.getText();
-        String gender = (String)jComboBox1.getSelectedItem();
+        String gender = (String) jComboBox1.getSelectedItem();
         String weight = jTextField5.getText();
-        String bloodGroup = (String)jComboBox2.getSelectedItem();
+        String bloodGroup = (String) jComboBox2.getSelectedItem();
         String age = jTextField6.getText();
-        
-        try (Connection con = ConnectionProvider.getCon();
-            PreparedStatement pst1 = con.prepareStatement("INSERT INTO Blood_Donor (bFName, bMName, bLName, BDay, bPhone, BloodType, cID) VALUES (?, ?, ?, ?, ?, ?, ?)");
-            PreparedStatement pst2 = con.prepareStatement("INSERT INTO `Condition` (Weight, Age, Gender, hID) VALUES (?, ?, ?, ?)")) {
 
-           pst1.setString(1, FirstName);
-           pst1.setString(2, MidName);
-           pst1.setString(3, LastName);
-           pst1.setString(4, DOB);
-           pst1.setString(5, mobileNo);
-           pst1.setString(6, bloodGroup);
-           pst1.setString(7, donorID);
-           pst1.executeUpdate();
+        try (Connection con = ConnectionProvider.getCon()) {
+            con.setAutoCommit(false); // Begin transaction
 
-           pst2.setString(1, weight);
-           pst2.setString(2, age);
-           pst2.setString(3, gender);
-           pst2.setString(4, donorID);
-           pst2.executeUpdate();
+            // Insert into Condition table
+            String conditionQuery = "INSERT INTO `Condition` (Weight, Age, Gender) VALUES (?, ?, ?)";
+            try (PreparedStatement pst1 = con.prepareStatement(conditionQuery, Statement.RETURN_GENERATED_KEYS)) {
+                pst1.setString(1, weight);
+                pst1.setString(2, age);
+                pst1.setString(3, gender);
+                pst1.executeUpdate();
 
-           JOptionPane.showMessageDialog(null, "Successfully Updated");
-           setVisible(false);
-           new addNewDonor().setVisible(true);
-       } catch (SQLException e) {
-           // Log the exception for debugging
-           e.printStackTrace();
-           JOptionPane.showMessageDialog(null, "An error occurred. Please try again later.");
-       }
+                // Get the generated condition ID
+                ResultSet rs = pst1.getGeneratedKeys();
+                int conditionID = -1;
+                if (rs.next()) {
+                    conditionID = rs.getInt(1);
+                }
+
+                // Insert into Blood_Donor table
+                if (conditionID != -1) {
+                    String donorQuery = "INSERT INTO Blood_Donor (bFName, bMName, bLName, BDay, bPhone, BloodType, cID) VALUES (?, ?, ?, ?, ?, ?, ?)";
+                    try (PreparedStatement pst2 = con.prepareStatement(donorQuery)) {
+                        pst2.setString(1, FirstName);
+                        pst2.setString(2, MidName);
+                        pst2.setString(3, LastName);
+                        pst2.setString(4, DOB);
+                        pst2.setString(5, mobileNo);
+                        pst2.setString(6, bloodGroup);
+                        pst2.setInt(7, conditionID);
+                        pst2.executeUpdate();
+                    }
+                }
+
+                con.commit(); // Commit transaction
+                JOptionPane.showMessageDialog(null, "Successfully Updated");
+                setVisible(false);
+                new addNewDonor().setVisible(true);
+            } catch (SQLException e) {
+                con.rollback(); // Rollback transaction on error
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, "An error occurred. Please try again later.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "An error occurred. Please try again later.");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed

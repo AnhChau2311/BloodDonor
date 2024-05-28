@@ -199,10 +199,10 @@ public class deleteDonor extends javax.swing.JFrame {
         String donorID = jTextField2.getText();
         try {
             Connection con = ConnectionProvider.getCon();
-            String query = "SELECT b.bID, b.bFName, b.bMName, b.bLName, b.BDay, b.bPhone, b.BloodType, c.Weight, c.Age, c.Gender " +
-                       "FROM Blood_Donor b " +
-                       "JOIN `Condition` c ON b.cID = c.cID " +
-                       "WHERE b.bID = ?";
+            String query = "SELECT b.bID, b.bFName, b.bMName, b.bLName, b.BDay, b.bPhone, b.BloodType, c.Weight, c.Age, c.Gender, c.cID, c.hID " +
+                           "FROM Blood_Donor b " +
+                           "JOIN `Condition` c ON b.cID = c.cID " +
+                           "WHERE b.bID = ?";
             PreparedStatement pst = con.prepareStatement(query);
             pst.setString(1, donorID);
             ResultSet rs = pst.executeQuery();
@@ -222,7 +222,7 @@ public class deleteDonor extends javax.swing.JFrame {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
-        } 
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -230,14 +230,50 @@ public class deleteDonor extends javax.swing.JFrame {
         String donorID = jTextField2.getText();
         try {
             Connection con = ConnectionProvider.getCon();
-            String query = "DELETE FROM Blood_Donor WHERE bID=?";
-            PreparedStatement pst = con.prepareStatement(query);
-            pst.setString(1, donorID);
-            int rowsAffected = pst.executeUpdate();
-            if (rowsAffected > 0) {
-                JOptionPane.showMessageDialog(null, "Successfully Deleted");
-                setVisible(false);
-                new deleteDonor().setVisible(true);
+            
+            // Retrieve cID and hID before deleting the donor
+            String selectQuery = "SELECT c.cID, c.hID " +
+                                 "FROM Blood_Donor b " +
+                                 "JOIN `Condition` c ON b.cID = c.cID " +
+                                 "WHERE b.bID = ?";
+            PreparedStatement selectPst = con.prepareStatement(selectQuery);
+            selectPst.setString(1, donorID);
+            ResultSet rs = selectPst.executeQuery();
+            
+            if (rs.next()) {
+                int cID = rs.getInt("cID");
+                int hID = rs.getInt("hID");
+                
+                // Delete the donor record
+                String deleteDonorQuery = "DELETE FROM Blood_Donor WHERE bID=?";
+                PreparedStatement deleteDonorPst = con.prepareStatement(deleteDonorQuery);
+                deleteDonorPst.setString(1, donorID);
+                int donorRowsAffected = deleteDonorPst.executeUpdate();
+
+                // Delete the condition record
+                String deleteConditionQuery = "DELETE FROM `Condition` WHERE cID=?";
+                PreparedStatement deleteConditionPst = con.prepareStatement(deleteConditionQuery);
+                deleteConditionPst.setInt(1, cID);
+                deleteConditionPst.executeUpdate();
+
+                // Delete the health condition record
+                String deleteHealthConditionQuery = "DELETE FROM Health_Condition WHERE hID=?";
+                PreparedStatement deleteHealthConditionPst = con.prepareStatement(deleteHealthConditionQuery);
+                deleteHealthConditionPst.setInt(1, hID);
+                deleteHealthConditionPst.executeUpdate();
+
+                if (donorRowsAffected > 0) {
+                    // Reset auto-increment value
+                    String resetAutoIncrementQuery = "ALTER TABLE Blood_Donor AUTO_INCREMENT = 1";
+                    Statement resetSt = con.createStatement();
+                    resetSt.executeUpdate(resetAutoIncrementQuery);
+                    
+                    JOptionPane.showMessageDialog(null, "Successfully Deleted");
+                    setVisible(false);
+                    new deleteDonor().setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Failed to delete donor. Donor ID does not exist.");
+                }
             } else {
                 JOptionPane.showMessageDialog(null, "Failed to delete donor. Donor ID does not exist.");
             }
