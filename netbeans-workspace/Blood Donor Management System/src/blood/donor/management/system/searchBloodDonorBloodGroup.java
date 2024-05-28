@@ -44,7 +44,7 @@ public class searchBloodDonorBloodGroup extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setLocation(new java.awt.Point(600, 260));
+        setLocation(new java.awt.Point(300, 100));
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -126,25 +126,35 @@ public class searchBloodDonorBloodGroup extends javax.swing.JFrame {
 
     private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
         // TODO add your handling code here:
-        String bloodGroup = jTextField1.getText();
+    String bloodGroup = jTextField1.getText().trim();
+        if (bloodGroup.isEmpty()) {
+            // If the search field is empty, reset the table or display all records if needed
+            // Return or clear table here as appropriate
+            return;
+        }
+
         try {
             Connection con = ConnectionProvider.getCon();
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(
-                        "SELECT b.bID, b.bFName, b.bMName, b.bLName, b.BDay, b.bPhone, b.BloodType, " +
-                        "c.Weight, c.Age, c.Gender, a.ComponentType, al.aLocation, d.dFName, d.dLName " +
-                        "FROM Blood_Donor b " +
-                        "JOIN `Condition` c ON b.cID = c.cID " +
-                        "JOIN Appointment a ON b.bID = a.bID " +
-                        "JOIN Appoint_location al ON a.locID = al.locID " +
-                        "JOIN Doctor d ON a.dID = d.dID " +
-                        "WHERE b.BloodType LIKE '%" + bloodGroup + "%'"
-            );
+            String query = 
+                "SELECT b.bID, b.bFName, b.bMName, b.bLName, b.BDay, b.bPhone, b.BloodType, " +
+                "c.Weight, c.Age, c.Gender, a.ComponentType, al.aLocation, d.dFName, d.dLName " +
+                "FROM Blood_Donor b " +
+                "JOIN `Condition` c ON b.cID = c.cID " +
+                "JOIN Appointment a ON b.bID = a.bID " +
+                "JOIN Appoint_location al ON a.locID = al.locID " +
+                "JOIN Doctor d ON a.dID = d.dID " +
+                "WHERE b.BloodType = ?";
+
+            PreparedStatement pst = con.prepareStatement(query);
+            pst.setString(1, bloodGroup);
+
+            ResultSet rs = pst.executeQuery();
             jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
             jTable1.setModel(DbUtils.resultSetToTableModel(rs));
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
-    }
+        }
     }//GEN-LAST:event_jTextField1KeyReleased
 
     /**
