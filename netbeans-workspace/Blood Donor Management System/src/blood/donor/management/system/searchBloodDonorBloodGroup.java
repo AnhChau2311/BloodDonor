@@ -138,14 +138,10 @@ public class searchBloodDonorBloodGroup extends javax.swing.JFrame {
             Statement st = con.createStatement();
             String query = 
                 "SELECT b.bID, b.bFName, b.bMName, b.bLName, b.BDay, b.bPhone, b.BloodType, " +
-                "c.Weight, c.Age, c.Gender, a.ComponentType, al.aLocation, d.dFName, d.dLName " +
+                "c.Weight, c.Age, c.Gender " +
                 "FROM Blood_Donor b " +
                 "JOIN `Condition` c ON b.cID = c.cID " +
-                "JOIN Appointment a ON b.bID = a.bID " +
-                "JOIN Appoint_location al ON a.locID = al.locID " +
-                "JOIN Doctor d ON a.dID = d.dID " +
                 "WHERE b.BloodType = ?";
-
             PreparedStatement pst = con.prepareStatement(query);
             pst.setString(1, bloodGroup);
 
